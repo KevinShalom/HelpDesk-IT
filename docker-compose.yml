@@ -1,0 +1,52 @@
+services:
+  app:
+    build:
+      context: .
+      dockerfile: docker/php/Dockerfile
+    container_name: it_helpdesk_app
+    restart: unless-stopped
+    working_dir: /var/www/html
+    volumes:
+      - ./:/var/www/html
+      - ./docker/php/local.ini:/usr/local/etc/php/conf.d/local.ini:ro
+    networks:
+      - helpdesk_network
+    depends_on:
+      - db
+
+  web:
+    image: nginx:1.27-alpine
+    container_name: it_helpdesk_web
+    restart: unless-stopped
+    ports:
+      - "8080:80"
+    volumes:
+      - ./:/var/www/html
+      - ./docker/nginx/default.conf:/etc/nginx/conf.d/default.conf:ro
+    networks:
+      - helpdesk_network
+    depends_on:
+      - app
+
+  db:
+    image: postgres:16-alpine
+    container_name: it_helpdesk_db
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: ${DB_DATABASE:-helpdesk_db}
+      POSTGRES_USER: ${DB_USERNAME:-postgres}
+      POSTGRES_PASSWORD: ${DB_PASSWORD:-postgres_secret}
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    networks:
+      - helpdesk_network
+
+networks:
+  helpdesk_network:
+    driver: bridge
+
+volumes:
+  postgres_data:
+    driver: local
