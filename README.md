@@ -1,22 +1,22 @@
-# 🛡️ Help Desk IT - Enterprise Incident Management System
+# Help Desk IT - Enterprise Incident Management System
 
 Un sistema moderno, robusto y elegante de gestión de tickets e incidentes de TI desarrollado con **Laravel**, **PostgreSQL**, **Docker** y un frontend SPA nativo (Vanilla JS/CSS) diseñado con una estética futurista **Dark Glassmorphism**.
 
 ---
 
-## 🌟 Características Principales
+## Características Principales
 
-- 🔐 **Autenticación y Roles (Sanctum):** Control de acceso basado en roles (`admin`, `tecnico`, `usuario`).
-- 🎫 **Gestión Completa de Incidentes (Tickets):** Creación, asignación a técnicos, cambio de estados en tiempo real, priorización y categorización.
-- ⏱️ **Cálculo Automático de SLAs:** Medición y seguimiento de tiempos de vencimiento según la gravedad del incidente (Baja, Media, Alta, Crítica).
-- 💬 **Colaboración e Historial:** Hilo interactivo de comentarios por ticket y registro auditado de cambios de estado.
-- 📊 **Dashboard Ejecutivo & Métricas:** Indicadores clave de rendimiento (KPIs), resolución media y volumen de incidentes.
-- 🎨 **Interfaz SPA Futurista:** Experiencia de usuario ultra rápida sin recarga de página, con animaciones fluidas, modo oscuro y vidrio pulido.
-- 🐳 **Totalmente Dockerizado:** Entorno isolado con PHP 8.2-FPM, Nginx y PostgreSQL listo para ejecutar en un solo comando.
+-  **Autenticación y Roles (Sanctum):** Control de acceso basado en roles (`admin`, `tecnico`, `usuario`).
+-  **Gestión Completa de Incidentes (Tickets):** Creación, asignación a técnicos, cambio de estados en tiempo real, priorización y categorización.
+-  **Cálculo Automático de SLAs:** Medición y seguimiento de tiempos de vencimiento según la gravedad del incidente (Baja, Media, Alta, Crítica).
+-  **Colaboración e Historial:** Hilo interactivo de comentarios por ticket y registro auditado de cambios de estado.
+-  **Dashboard Ejecutivo & Métricas:** Indicadores clave de rendimiento (KPIs), resolución media y volumen de incidentes.
+-  **Interfaz SPA Futurista:** Experiencia de usuario ultra rápida sin recarga de página, con animaciones fluidas, modo oscuro y vidrio pulido.
+-  **Totalmente Dockerizado:** Entorno isolado con PHP 8.2-FPM, Nginx y PostgreSQL listo para ejecutar en un solo comando.
 
 ---
 
-## 🛠️ Tecnología y Arquitectura
+##  Tecnología y Arquitectura
 
 - **Backend:** Laravel 10 / PHP 8.2 (REST API, Eloquent ORM, Policies, Services Pattern)
 - **Base de Datos:** PostgreSQL
@@ -26,7 +26,7 @@ Un sistema moderno, robusto y elegante de gestión de tickets e incidentes de TI
 
 ---
 
-## 🚀 Guía de Instalación y Despliegue
+##  Guía de Instalación y Despliegue
 
 ### Prerrequisitos
 - [Docker Desktop](https://www.docker.com/products/docker-desktop/) instalado y ejecutándose.
@@ -71,7 +71,7 @@ Un sistema moderno, robusto y elegante de gestión de tickets e incidentes de TI
 
 ---
 
-## 🔑 Cuentas de Prueba Pre-configuradas
+##  Cuentas de Prueba Pre-configuradas
 
 El seeder inicial genera usuarios para probar los distintos niveles de permiso (contraseña estándar: `password123`):
 
@@ -83,7 +83,7 @@ El seeder inicial genera usuarios para probar los distintos niveles de permiso (
 
 ---
 
-## 🧪 Ejecución de Pruebas Automatizadas
+##  Ejecución de Pruebas Automatizadas
 
 Para validar que todos los endpoints y reglas de negocio funcionan correctamente:
 
@@ -93,6 +93,6 @@ docker-compose exec app php artisan test
 
 ---
 
-## 📄 Licencia
+##  Licencia
 
 Este proyecto es de código abierto bajo la licencia [MIT](LICENSE).
