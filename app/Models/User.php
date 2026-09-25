@@ -26,6 +26,13 @@ class User extends Authenticatable
         'is_active',
     ];
 
+    /**
+     * Always eager-load the role so role checks work without extra queries
+     * (e.g. when the user model is hydrated from a Sanctum token).
+     */
+    protected $with = ['role'];
+
+
     protected $hidden = [
         'password',
         'remember_token',

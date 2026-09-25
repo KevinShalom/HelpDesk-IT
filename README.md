@@ -1,58 +1,98 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# 🛡️ Help Desk IT - Enterprise Incident Management System
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+Un sistema moderno, robusto y elegante de gestión de tickets e incidentes de TI desarrollado con **Laravel**, **PostgreSQL**, **Docker** y un frontend SPA nativo (Vanilla JS/CSS) diseñado con una estética futurista **Dark Glassmorphism**.
 
-## About Laravel
+---
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+## 🌟 Características Principales
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+- 🔐 **Autenticación y Roles (Sanctum):** Control de acceso basado en roles (`admin`, `tecnico`, `usuario`).
+- 🎫 **Gestión Completa de Incidentes (Tickets):** Creación, asignación a técnicos, cambio de estados en tiempo real, priorización y categorización.
+- ⏱️ **Cálculo Automático de SLAs:** Medición y seguimiento de tiempos de vencimiento según la gravedad del incidente (Baja, Media, Alta, Crítica).
+- 💬 **Colaboración e Historial:** Hilo interactivo de comentarios por ticket y registro auditado de cambios de estado.
+- 📊 **Dashboard Ejecutivo & Métricas:** Indicadores clave de rendimiento (KPIs), resolución media y volumen de incidentes.
+- 🎨 **Interfaz SPA Futurista:** Experiencia de usuario ultra rápida sin recarga de página, con animaciones fluidas, modo oscuro y vidrio pulido.
+- 🐳 **Totalmente Dockerizado:** Entorno isolado con PHP 8.2-FPM, Nginx y PostgreSQL listo para ejecutar en un solo comando.
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+---
 
-## Learning Laravel
+## 🛠️ Tecnología y Arquitectura
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+- **Backend:** Laravel 10 / PHP 8.2 (REST API, Eloquent ORM, Policies, Services Pattern)
+- **Base de Datos:** PostgreSQL
+- **Frontend:** Vanilla JavaScript (SPA hash-routing) + Custom CSS (Glassmorphism & CSS Variables)
+- **Infraestructura:** Docker & Docker Compose (Nginx, PHP-FPM, PostgreSQL)
+- **Testing:** PHPUnit / Laravel Feature Tests
 
-In addition, [Laracasts](https://laracasts.com) contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+---
 
-You can also watch bite-sized lessons with real-world projects on [Laravel Learn](https://laravel.com/learn), where you will be guided through building a Laravel application from scratch while learning PHP fundamentals.
+## 🚀 Guía de Instalación y Despliegue
 
-## Agentic Development
+### Prerrequisitos
+- [Docker Desktop](https://www.docker.com/products/docker-desktop/) instalado y ejecutándose.
+- Git.
 
-Laravel's predictable structure and conventions make it ideal for AI coding agents like Claude Code, Cursor, and GitHub Copilot. Install [Laravel Boost](https://laravel.com/docs/ai) to supercharge your AI workflow:
+### Pasos de Inicio Rápido
+
+1. **Clonar el repositorio:**
+   ```bash
+   git clone https://github.com/KevinShalom/HelpDesk-IT.git
+   cd HelpDesk-IT
+   ```
+
+2. **Configurar variables de entorno:**
+   Copia el archivo de ejemplo `.env.example` a `.env`:
+   ```bash
+   cp .env.example .env
+   ```
+
+3. **Levantar los contenedores de Docker:**
+   ```bash
+   docker-compose up -d --build
+   ```
+
+4. **Instalar dependencias de Composer:**
+   ```bash
+   docker-compose exec app composer install
+   ```
+
+5. **Generar la clave de la aplicación:**
+   ```bash
+   docker-compose exec app php artisan key:generate
+   ```
+
+6. **Ejecutar migraciones y datos de prueba (Seeders):**
+   ```bash
+   docker-compose exec app php artisan migrate:fresh --seed
+   ```
+
+7. **¡Listo! Accede a la aplicación:**
+   Abre tu navegador en: [http://localhost:8080](http://localhost:8080)
+
+---
+
+## 🔑 Cuentas de Prueba Pre-configuradas
+
+El seeder inicial genera usuarios para probar los distintos niveles de permiso (contraseña estándar: `password123`):
+
+| Rol | Correo Electrónico | Contraseña | Permisos |
+| :--- | :--- | :--- | :--- |
+| **Administrador** | `admin@helpdesk.local` | `password123` | Control total, asignación de cualquier ticket y acceso a métricas. |
+| **Técnico** | `tecnico@helpdesk.local` | `password123` | Gestión de tickets asignados, cambio de estados y respuesta. |
+| **Usuario / Empleado** | `usuario@helpdesk.local` | `password123` | Creación de tickets propios y consulta de estado. |
+
+---
+
+## 🧪 Ejecución de Pruebas Automatizadas
+
+Para validar que todos los endpoints y reglas de negocio funcionan correctamente:
 
 ```bash
-composer require laravel/boost --dev
-
-php artisan boost:install
+docker-compose exec app php artisan test
 ```
 
-Boost provides your agent 15+ tools and skills that help agents build Laravel applications while following best practices.
+---
 
-## Contributing
+## 📄 Licencia
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
-
-## Code of Conduct
-
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
-
-## Security Vulnerabilities
-
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
-
-## License
-
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+Este proyecto es de código abierto bajo la licencia [MIT](LICENSE).

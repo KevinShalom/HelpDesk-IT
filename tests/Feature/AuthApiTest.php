@@ -101,22 +101,28 @@ class AuthApiTest extends TestCase
             ->assertJsonPath('user.role.slug', Role::ADMIN);
     }
 
-    public function test_admin_can_access_admin_ping_endpoint(): void
+    public function test_admin_can_access_protected_resource(): void
     {
         $adminRole = Role::where('slug', Role::ADMIN)->first();
         $admin = User::factory()->create(['role_id' => $adminRole->id]);
 
-        $response = $this->actingAs($admin, 'sanctum')->getJson('/api/admin/ping');
+        // Assets list is accessible to all authenticated users, admins can also create
+        $response = $this->actingAs($admin, 'sanctum')->getJson('/api/assets');
 
         $response->assertStatus(200);
     }
 
-    public function test_employee_cannot_access_admin_ping_endpoint(): void
+    public function test_employee_cannot_access_admin_only_resource(): void
     {
         $employeeRole = Role::where('slug', Role::EMPLOYEE)->first();
         $employee = User::factory()->create(['role_id' => $employeeRole->id]);
 
-        $response = $this->actingAs($employee, 'sanctum')->getJson('/api/admin/ping');
+        // Creating assets requires admin/supervisor role
+        $response = $this->actingAs($employee, 'sanctum')->postJson('/api/assets', [
+            'inventory_code' => 'INV-001',
+            'name'           => 'Laptop Test',
+            'type'           => 'laptop',
+        ]);
 
         $response->assertStatus(403)
             ->assertJson(['message' => 'Acceso denegado. No posee los permisos necesarios para realizar esta acción.']);
