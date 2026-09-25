@@ -1,6 +1,6 @@
 # Help Desk IT - Enterprise Incident Management System
 
-Un sistema moderno, robusto y elegante de gestión de tickets e incidentes de TI desarrollado con **Laravel**, **PostgreSQL**, **Docker** y un frontend SPA nativo (Vanilla JS/CSS) diseñado con una estética futurista **Dark Glassmorphism**.
+Un sistema de gestión de tickets e incidentes de TI desarrollado con **Laravel**, **PostgreSQL**, **Docker** y un frontend SPA nativo (Vanilla JS/CSS) diseñado con una estética futurista **Dark Glassmorphism**.
 
 ---
 
